@@ -50,7 +50,7 @@ class Category(models.Model):
 
 
 class SiteUser(AbstractUser):
-    money = models.PositiveIntegerField()
+    money = models.PositiveIntegerField(default=0)
     
     # def save(self, **kwargs):
     #     self.money = 10000

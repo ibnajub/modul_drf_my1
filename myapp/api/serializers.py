@@ -1,5 +1,12 @@
+import io
+
 from rest_framework import serializers
-from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
+
+from myapp.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+
+from myapp.models import Women
 
 
 class SnippetSerializer(serializers.Serializer):
@@ -27,3 +34,38 @@ class SnippetSerializer(serializers.Serializer):
         instance.style = validated_data.get('style', instance.style)
         instance.save()
         return instance
+
+
+# class WomenSerialiser(serializers.ModelSerializer):
+#     class Meta:
+#         model = Women
+#         fields = ('title', 'cat_id')
+
+# class WomenModel:
+#     def __init__(self, title, content):
+#         self.title = title
+#         self.content = content
+
+
+class WomenSerialiser(serializers.Serializer):
+    title = serializers.CharField(max_length=255)
+    content = serializers.CharField()
+    time_create = serializers.DateTimeField()
+    time_update = serializers.DateTimeField()
+    is_published = serializers.BooleanField(default=True)
+    cat_id = serializers.IntegerField()
+
+# def decode():
+#     stream = io.BytesIO(b'{"title":"angela","content":"Conten: Angela"}')
+#     data = JSONParser().parse(stream)
+#     serializer = WomenSerialiser(data=data)
+#     serializer.is_valid()
+#     print(serializer.validated_data)
+#
+#
+# def encode():
+#     model = WomenModel('angela', 'Conten: Angela')
+#     model_sr = WomenSerialiser(model)
+#     print(model_sr.data, type(model_sr.data), sep='\n')
+#     json = JSONRenderer().render(model_sr.data)
+#     print(json)
