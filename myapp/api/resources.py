@@ -11,8 +11,8 @@ from rest_framework.views import APIView
 #     serializer_class = WomenSerialiser
 class WomenAPIView(APIView):
     def get(self,request):
-        lst = Women.objects.all().values()
-        return Response({'sss': list(lst)})
+        w = Women.objects.all()
+        return Response({'sss': WomenSerialiser(data=w, many=True)})
     def post(self,request):
         post_new = Women.objects.create(
             title=request.data['title'],

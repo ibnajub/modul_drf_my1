@@ -41,10 +41,7 @@ class SnippetSerializer(serializers.Serializer):
 #         model = Women
 #         fields = ('title', 'cat_id')
 
-# class WomenModel:
-#     def __init__(self, title, content):
-#         self.title = title
-#         self.content = content
+
 
 
 class WomenSerialiser(serializers.Serializer):
@@ -55,9 +52,15 @@ class WomenSerialiser(serializers.Serializer):
     is_published = serializers.BooleanField(default=True)
     cat_id = serializers.IntegerField()
 
+
+# class WomenModel:
+#     def __init__(self, title, content):
+#         self.title = title
+#         self.content = content
 # def decode():
 #     stream = io.BytesIO(b'{"title":"angela","content":"Conten: Angela"}')
 #     data = JSONParser().parse(stream)
+#     print(data)
 #     serializer = WomenSerialiser(data=data)
 #     serializer.is_valid()
 #     print(serializer.validated_data)
